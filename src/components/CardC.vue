@@ -88,10 +88,6 @@ export default {
     z-index: 5;
 }
 
-/* .visible-cart {
-    display: block;
-} */
-
 @media (min-width: 768px) {
 
 .card {
@@ -103,7 +99,7 @@ export default {
 @media (min-width: 920px) {
 
 .card {
-    max-width: 260px;
+    width: 260px;
     box-shadow: none;
 }
 

@@ -1,39 +1,113 @@
 <template>
   
     <form action="#" class="main__form form">
+        
         <label class="form__label" for="itemTitle">
             Наименование товара
             <span class="required"></span>
         </label>
-        <input type="text" class="form__input" id="itemTitle" placeholder="Введите наименование товара" />
-        <span class="form__invalid-text">Поле является обязательным</span>
+        <input type="text" class="form__input" id="itemTitle" placeholder="Введите наименование товара"
+            v-model.trim="card.title"
+            :class="{invalid: isTitleInvalid}"
+        />
+        <span class="form__invalid-text"  v-if="isTitleInvalid">Поле является обязательным</span>
 
+        
+        
         <label class="form__label" for="itemDescription">
             Описание товара
         </label>
-        <textarea class="form__textarea" id="itemDescription" cols="30" rows="10" maxlength="250" placeholder="Введите описание товара"></textarea>
+        <textarea class="form__textarea" id="itemDescription" cols="30" rows="10" maxlength="250" placeholder="Введите описание товара"
+            v-model.trim="card.description"
+        ></textarea>
+
+
 
         <label class="form__label" for="itemLink">
             Ссылка на изображение товара
             <span class="required"></span>
         </label>
-        <input type="url" id="itemLink" class="form__input" placeholder="Введите ссылку" />
-        <span class="form__invalid-text">Поле является обязательным</span>
+        <input type="url" id="itemLink" class="form__input" placeholder="Введите ссылку"
+            v-model.trim="card.image"
+            :class="{invalid: isLinkInvalid}"
+        />
+        <span class="form__invalid-text" v-if="isLinkInvalid">Поле является обязательным</span>
+
+
 
         <label class="form__label" for="itemPrice">
             Цена товара
             <span class="required"></span>
         </label>
-        <input type="number" id="itemPrice" class="form__input" placeholder="Введите цену" />
-        <span class="form__invalid-text">Поле является обязательным</span>
+        <input type="number" id="itemPrice" class="form__input" placeholder="Введите цену"
+            v-model="card.price"
+            :class="{invalid: isPriceInvalid}"
+        />
+        <span class="form__invalid-text" v-if="isPriceInvalid">Поле является обязательным</span>
 
-        <button class="form__submit-btn form__submit-btn_not-active">Добавить товар</button>
+
+
+        <button type="submit" class="form__submit-btn form__submit-btn_not-active"
+            @click.prevent="checkForm"
+            :class="{'form__submit-btn_active': this.card.title && this.card.image && this.card.price }"
+        >Добавить товар</button>
+
     </form>
 
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
+
+    data() {
+        return {
+            card: {
+                "id": "",
+                "title": "",
+                "description": "",
+                "image": "",
+                "price": "",
+                "showCart": false
+            },
+            isTitleInvalid: false,
+            isLinkInvalid: false,
+            isPriceInvalid: false,
+        }
+    },
+
+    methods: {
+        checkForm() {
+            if (!this.card.title || !this.card.image || !this.card.price) {
+                !this.card.title ? this.isTitleInvalid = true : this.isTitleInvalid = false;
+                !this.card.image ? this.isLinkInvalid = true : this.isLinkInvalid = false;
+                !this.card.price ? this.isPriceInvalid = true : this.isPriceInvalid = false;
+            } else {
+                this.saveNewCard();
+            };
+        },
+        saveNewCard() {
+            this.card.id = Date.now();
+
+            this.addCard(this.card);
+
+            this.clearForm();
+        },
+        clearForm() {
+            this.card.title = '';
+            this.card.description = '';
+            this.card.image = '';
+            this.card.price = '';
+            this.isTitleInvalid = false;
+            this.isLinkInvalid = false;
+            this.isPriceInvalid = false;
+        },
+
+        ...mapActions({
+            addCard: 'addCard',
+        }),
+    },
 
 }
 </script>
@@ -70,7 +144,7 @@ export default {
     border-radius: 4px;
     padding: 10px 16px;
     font-size: 12px;
-    margin-bottom: 4px;
+    margin-bottom: 16px;
 }
 
 .form__input::placeholder,
@@ -90,6 +164,7 @@ textarea:focus {
 
 .invalid {
     border: 1px solid #FF8484;
+    margin-bottom: 4px;
 }
 
 .form__invalid-text {

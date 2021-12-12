@@ -28,8 +28,22 @@ export default createStore({
     }],
   },
   mutations: {
+    addCard(state, newCard) {
+      const card = {
+        id: newCard.id,
+        image: newCard.image,
+        title: newCard.title,
+        description: newCard.description,
+        price: newCard.price,
+        showCart: newCard.showCart
+      };
+      state.goods.push(card);
+    },
   },
   actions: {
+    addCard({ commit }, newCard) {
+      commit('addCard', newCard);
+    },
   },
   modules: {
   }
