@@ -7,21 +7,24 @@ export default createStore({
       "image": require("../assets/img/card.png"),
       "title": "Наименование товара",
       "description": "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк. Довольно-таки интере",
-      "price": 10000
+      "price": 10000,
+      "showCart": false
     },
     {
       "id": 3213694,
       "image": require("../assets/img/card.png"),
       "title": "sdfsdf",
       "description": "sdfwerwe н",
-      "price": 4000
+      "price": 4000,
+      "showCart": false
     },
     {
       "id": 3213694,
       "image": require("../assets/img/card.png"),
       "title": "sdfsdf",
       "description": "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
-      "price": 4000
+      "price": 4000,
+      "showCart": false
     }],
   },
   mutations: {

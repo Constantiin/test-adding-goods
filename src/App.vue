@@ -70,7 +70,7 @@ body {
     font-size: 16px;
     line-height: 1.2;
     color: #3F3F3F;
-    background-color: rgba(255, 254, 251, 0.8);
+    background-color: #faf9f7;
 }
 
 img {

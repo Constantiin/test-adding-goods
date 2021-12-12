@@ -4,8 +4,10 @@
         class="main__item card"
         v-for="card in goods"
         :key="card.id"
+        @mouseenter="card.showCart = true"
+        @mouseleave="card.showCart = false"
     >
-        <button class="card__cart"></button>
+        <button class="card__cart" v-if="card.showCart"></button>
         <img class="card__image" :src="card.image" :alt="card.title">
         <div class="card__content">
             <div class="card__title"><p>{{ card.title }}</p></div>
@@ -20,7 +22,6 @@
 import { mapState } from 'vuex';
 
 export default {
-
     computed: {
         ...mapState({
             goods: 'goods',
@@ -38,6 +39,7 @@ export default {
     background: #FFFEFB;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .card__image {
@@ -75,7 +77,7 @@ export default {
     position: absolute;
     top: -10px;
     right: -12px;
-    display: none;
+    display: block;
     width: 40px;
     height: 40px;
     text-align: center;
@@ -83,13 +85,12 @@ export default {
     background-image: url('../assets/img/cart.png');
     background-repeat: no-repeat;
     background-position: center;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     z-index: 5;
 }
 
-.visible-cart {
+/* .visible-cart {
     display: block;
-}
+} */
 
 @media (min-width: 768px) {
 
