@@ -7,7 +7,10 @@
         @mouseenter="card.showCart = true"
         @mouseleave="card.showCart = false"
     >
-        <button class="card__cart" v-if="card.showCart"></button>
+        <button class="card__cart"
+            v-if="card.showCart"
+            @click.stop="removeCard(card.id)"
+        ></button>
         <img class="card__image" :src="card.image" :alt="card.title">
         <div class="card__content">
             <div class="card__title"><p>{{ card.title }}</p></div>
@@ -19,9 +22,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
+    methods: {
+        ...mapActions({
+            removeCard: 'removeCard',
+        }),
+    },
+
     computed: {
         ...mapState({
             goods: 'goods',
@@ -99,7 +108,7 @@ export default {
 @media (min-width: 920px) {
 
 .card {
-    width: 260px;
+    max-width: 260px;
     box-shadow: none;
 }
 

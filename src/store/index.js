@@ -19,7 +19,7 @@ export default createStore({
       "showCart": false
     },
     {
-      "id": 3213694,
+      "id": 3221654131346,
       "image": require("../assets/img/card.png"),
       "title": "sdfsdf",
       "description": "Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк",
@@ -39,10 +39,16 @@ export default createStore({
       };
       state.goods.push(card);
     },
+    removeCard(state, id) {
+      state.goods = state.goods.filter(item => item.id !== id);
+    },
   },
   actions: {
     addCard({ commit }, newCard) {
       commit('addCard', newCard);
+    },
+    removeCard({ commit }, id) {
+      commit('removeCard', id);
     },
   },
   modules: {

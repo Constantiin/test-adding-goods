@@ -2,7 +2,9 @@
   
     <ul class="main__list">
 
-        <card-c />
+        <card-c v-if="$store.state.goods.length" />
+
+        <h2 v-else>Список пуст</h2>
 
     </ul>
 
