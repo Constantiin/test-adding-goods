@@ -11,7 +11,9 @@
             v-if="card.showCart"
             @click.stop="removeCard(card.id)"
         ></button>
-        <img class="card__image" :src="card.image" :alt="card.title">
+        <div class="card__image"
+            :style="{backgroundImage: `url(${card.image})`}"
+        ></div>
         <div class="card__content">
             <div class="card__title"><p>{{ card.title }}</p></div>
             <div class="card__description"><p>{{ card.description }}</p></div>
@@ -44,14 +46,23 @@ export default {
 
 .card {
     position: relative;
+    max-width: 260px;
     min-height: 423px;
     background: #FFFEFB;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 4px;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .card__image {
+    display: block;
+    max-width: 332px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 4px 4px 0px 0px;
     margin-bottom: 16px;
 }
 
@@ -108,7 +119,7 @@ export default {
 @media (min-width: 920px) {
 
 .card {
-    max-width: 260px;
+    min-width: 260px;
     box-shadow: none;
 }
 
@@ -117,7 +128,8 @@ export default {
 @media (min-width: 1024px) {
 
 .card {
-    max-width: 300px;
+    min-width: 300px;
+    font-size: 16px;
 }
 
 }
