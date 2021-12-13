@@ -92,6 +92,8 @@ export default {
 
             this.addCard(this.card);
 
+            this.updateHeaderTitle("Товар добавлен");
+
             this.clearForm();
         },
         clearForm() {
@@ -106,6 +108,7 @@ export default {
 
         ...mapActions({
             addCard: 'addCard',
+            updateHeaderTitle: 'updateHeaderTitle',
         }),
     },
 

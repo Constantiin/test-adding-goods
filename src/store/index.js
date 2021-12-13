@@ -26,6 +26,8 @@ export default createStore({
       "price": 4000,
       "showCart": false
     }],
+
+    headerTitle: 'Добавление товара',
   },
   mutations: {
     addCard(state, newCard) {
@@ -39,16 +41,32 @@ export default createStore({
       };
       state.goods.push(card);
     },
+    
     removeCard(state, id) {
       state.goods = state.goods.filter(item => item.id !== id);
+    },
+    
+    updateHeaderTitle(state, value) {
+      state.headerTitle = value;
     },
   },
   actions: {
     addCard({ commit }, newCard) {
       commit('addCard', newCard);
     },
+
     removeCard({ commit }, id) {
       commit('removeCard', id);
+      
+      this.dispatch('updateHeaderTitle', 'Товар удалён');
+    },
+    
+    updateHeaderTitle({ commit }, value) {
+      commit('updateHeaderTitle', value);
+
+      setTimeout(() => {
+        this.state.headerTitle = "Добавление товара";
+      }, 3000);
     },
   },
   modules: {

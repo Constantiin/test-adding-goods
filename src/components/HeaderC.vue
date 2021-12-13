@@ -1,8 +1,14 @@
 <template>
     <header class="header">
-        <h1 class="header_title">
-            Добавление товара
+        <h1 class="header__title"
+            :class="{
+                'header__title_add-card': $store.state.headerTitle === 'Товар добавлен',
+                'header__title_remove-card': $store.state.headerTitle === 'Товар удалён',
+            }"
+        >
+            {{ $store.state.headerTitle }}
         </h1>
+
         <select class="header__sort-select">
             <option value="all" selected>По умолчанию</option>
             <option value="title">по имени</option>
@@ -26,10 +32,19 @@ export default {
     margin: 5px auto 20px;
 }
 
-.header_title {
+.header__title {
     font-size: 28px;
     line-height: 35px;
     margin-bottom: 5px;
+    transition: transform .8s ease-out, color .8s ease-out;
+}
+
+.header__title.header__title_add-card {
+  color: #57A639;
+}
+
+.header__title.header__title_remove-card {
+  color: #ff8484;
 }
 
 .header__sort-select {
@@ -58,8 +73,20 @@ export default {
     margin: 32px 32px 16px;
 }
 
-.header_title {
+.header__title {
     margin-bottom: 0;
+}
+
+}
+
+@media (min-width: 1024px) {
+
+.header__title.header__title_add-card {
+  transform: translateX(1em);
+}
+
+.header__title.header__title_remove-card {
+  transform: translateX(1em);
 }
 
 }
