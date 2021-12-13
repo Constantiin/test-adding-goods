@@ -2,24 +2,39 @@
     <header class="header">
         <h1 class="header__title"
             :class="{
-                'header__title_add-card': $store.state.headerTitle === 'Товар добавлен',
-                'header__title_remove-card': $store.state.headerTitle === 'Товар удалён',
+                'header__title_add-card': headerTitle === 'Товар добавлен',
+                'header__title_remove-card': headerTitle === 'Товар удалён',
             }"
         >
-            {{ $store.state.headerTitle }}
+            {{ headerTitle }}
         </h1>
 
-        <select class="header__sort-select">
+        <select class="header__sort-select"
+            @change="changeSortParam"
+        >
             <option value="all" selected>По умолчанию</option>
-            <option value="title">по имени</option>
-            <option value="description">по описанию</option>
+            <option value="min">По цене min</option>
+            <option value="max">По цене max</option>
+            <option value="title">По названию</option>
         </select>
     </header>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
-    
+    computed: {
+        ...mapState([
+            'headerTitle'
+        ]),
+    },
+
+    methods: {
+        ...mapActions([
+            'changeSortParam'
+        ]),
+    },
 }
 </script>
 

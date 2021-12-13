@@ -3,7 +3,7 @@
   <transition-group name="cardsList">
     <li
         class="main__item card"
-        v-for="card in goods"
+        v-for="card in sortedGoods"
         :key="card.id"
         @mouseenter="card.showCart = true"
         @mouseleave="card.showCart = false"
@@ -18,7 +18,7 @@
         <div class="card__content">
             <div class="card__title"><p>{{ card.title }}</p></div>
             <div class="card__description"><p>{{ card.description }}</p></div>
-            <div class="card__price"><p>{{ card.price }} руб.</p></div>
+            <div class="card__price"><p>{{ card.price.toLocaleString() }} руб.</p></div>
         </div>
     </li>
   </transition-group>
@@ -26,19 +26,19 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     methods: {
-        ...mapActions({
-            removeCard: 'removeCard',
-        }),
+        ...mapActions([
+            'removeCard'
+        ]),
     },
 
     computed: {
-        ...mapState({
-            goods: 'goods',
-        }),
+        ...mapGetters([
+            'sortedGoods'
+        ]),
     },
 
 }

@@ -64,7 +64,7 @@ export default {
     data() {
         return {
             card: {
-                "id": "",
+                "id": 0,
                 "title": "",
                 "description": "",
                 "image": "",
@@ -104,9 +104,9 @@ export default {
             this.isPriceInvalid = false;
         },
 
-        ...mapActions({
-            addCard: 'addCard',
-        }),
+        ...mapActions([
+            'addCard'
+        ]),
     },
 
 }
