@@ -87,8 +87,14 @@ button {
 input,
 button,
 textarea {
-    border: 0;
+    border: none;
+    outline: none;
     color: #3F3F3F;
+}
+
+input:focus,
+textarea:focus {
+    outline: 1px solid #57A639;
 }
 
 a {

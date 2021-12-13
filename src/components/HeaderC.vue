@@ -40,9 +40,14 @@ export default {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     padding: 10px 16px;
-
+    cursor: pointer;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 12px;
     color: #B4B4B4;
+}
+
+.header__sort-select:focus {
+    outline: 1px solid #57A639;
 }
 
 @media (min-width: 768px) {

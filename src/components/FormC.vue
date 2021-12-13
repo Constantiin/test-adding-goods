@@ -4,7 +4,7 @@
         
         <label class="form__label" for="itemTitle">
             Наименование товара
-            <span class="required"></span>
+            <span class="required-item"></span>
         </label>
         <input type="text" class="form__input" id="itemTitle" placeholder="Введите наименование товара"
             v-model.trim="card.title"
@@ -25,7 +25,7 @@
 
         <label class="form__label" for="itemLink">
             Ссылка на изображение товара
-            <span class="required"></span>
+            <span class="required-item"></span>
         </label>
         <input type="url" id="itemLink" class="form__input" placeholder="Введите ссылку"
             v-model.trim="card.image"
@@ -37,7 +37,7 @@
 
         <label class="form__label" for="itemPrice">
             Цена товара
-            <span class="required"></span>
+            <span class="required-item"></span>
         </label>
         <input type="number" id="itemPrice" class="form__input" placeholder="Введите цену"
             v-model="card.price"
@@ -152,18 +152,9 @@ export default {
     color: #B4B4B4;
 }
 
-input,
-textarea {
-    outline: none;
-}
-
-input:focus,
-textarea:focus {
-    border: 1px solid #ccc;
-}
-
 .invalid {
     border: 1px solid #FF8484;
+    outline: none;
     margin-bottom: 4px;
 }
 
@@ -212,7 +203,7 @@ textarea:focus {
     color: #fff;
 }
 
-.required {
+.required-item {
     display: inline-block;
     width: 4px;
     height: 10px;
