@@ -1,5 +1,6 @@
 <template>
   
+  <transition-group name="cardsList">
     <li
         class="main__item card"
         v-for="card in goods"
@@ -20,6 +21,7 @@
             <div class="card__price"><p>{{ card.price }} руб.</p></div>
         </div>
     </li>
+  </transition-group>
 
 </template>
 
@@ -106,6 +108,16 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     z-index: 5;
+}
+
+.cardsList-enter-active,
+.cardsList-leave-active {
+  transition: all 1s ease-in;
+}
+.cardsList-enter-from,
+.cardsList-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 @media (min-width: 768px) {
