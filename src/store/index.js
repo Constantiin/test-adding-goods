@@ -109,7 +109,7 @@ export default createStore({
         return [...state.goods].sort((item1, item2) => item2.price - item1.price);
       }
       else if (state.sortParam === "title") {
-        return [...state.goods].sort((item1, item2) => item1.title - item2.title);
+        return [...state.goods].sort((item1, item2) => item1.title.localeCompare(item2.title));
       }
       else {
         return state.goods;
