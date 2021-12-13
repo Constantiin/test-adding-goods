@@ -34,7 +34,7 @@ export default createStore({
         image: newCard.image,
         title: newCard.title,
         description: newCard.description,
-        price: newCard.price,
+        price: newCard.price.toLocaleString(),
         showCart: newCard.showCart
       };
       state.goods.push(card);
