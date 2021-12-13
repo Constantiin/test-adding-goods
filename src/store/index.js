@@ -50,14 +50,22 @@ export default createStore({
     updateHeaderTitle(state, value) {
       state.headerTitle = value;
     },
+
+    getSavedGoods(state) {
+      state.goods = JSON.parse(localStorage.getItem('goods'));
+    },
   },
   actions: {
     addCard({ commit }, newCard) {
       commit('addCard', newCard);
+      this.dispatch('saveGoods');
+
+      this.dispatch('updateHeaderTitle', 'Товар добавлен');
     },
 
     removeCard({ commit }, id) {
       commit('removeCard', id);
+      this.dispatch('saveGoods');
       
       this.dispatch('updateHeaderTitle', 'Товар удалён');
     },
@@ -68,6 +76,14 @@ export default createStore({
       setTimeout(() => {
         this.state.headerTitle = "Добавление товара";
       }, 3000);
+    },
+
+    saveGoods({ state }) {
+      localStorage.setItem('goods', JSON.stringify(state.goods));
+    },
+
+    getSavedGoods({ commit }) {
+      commit('getSavedGoods');
     },
   },
   modules: {

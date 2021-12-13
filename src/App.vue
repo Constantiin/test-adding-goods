@@ -11,13 +11,25 @@
 <script>
 import HeaderC from '@/components/HeaderC.vue';
 import MainC from '@/components/MainC.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
   components: {
     HeaderC,
     MainC
-  }
+  },
+
+  methods: {
+      ...mapActions({
+          getSavedGoods: 'getSavedGoods',
+          saveGoods: 'saveGoods',
+      }),
+  },
+
+  created() {
+      if (localStorage.goods) this.getSavedGoods();
+  },
 }
 </script>
 
