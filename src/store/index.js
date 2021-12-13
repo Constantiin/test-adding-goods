@@ -103,13 +103,13 @@ export default createStore({
     sortedGoods(state) {
       
       if (state.sortParam === "min") {
-        return state.goods.sort((item1, item2) => item1.price - item2.price);
+        return [...state.goods].sort((item1, item2) => item1.price - item2.price);
       } 
       else if (state.sortParam === "max") {
-        return state.goods.sort((item1, item2) => item2.price - item1.price);
+        return [...state.goods].sort((item1, item2) => item2.price - item1.price);
       }
       else if (state.sortParam === "title") {
-        return state.goods.sort((item1, item2) => item1.title - item2.title);
+        return [...state.goods].sort((item1, item2) => item1.title - item2.title);
       }
       else {
         return state.goods;

@@ -120,6 +120,10 @@ export default {
   transform: translateY(50px);
 }
 
+.cardsList-move {
+  transition: transform .9s ease-in-out;
+}
+
 @media (min-width: 768px) {
 
 .card {
